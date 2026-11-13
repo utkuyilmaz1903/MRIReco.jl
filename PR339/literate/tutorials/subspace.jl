@@ -38,7 +38,9 @@ nothing #hide
 # image border, and scaled it. The file contains the samples with the dimensions samples, coils and echoes, their
 # indices in the plane and the echo times in ms:
 
-datadir = joinpath(pkgdir(MRIReco), "docs", "src", "examples", "data")
+using Pkg.Artifacts
+artifacts = joinpath(pkgdir(MRIReco), "docs", "Artifacts.toml")
+datadir = ensure_artifact_installed("MRIRecoDocsData", artifacts; io = devnull)
 file = joinpath(datadir, "mouse_brain_MESE_plane65.h5")
 samples = h5read(file, "samples")
 indices = Int.(h5read(file, "indices"))

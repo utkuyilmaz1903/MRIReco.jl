@@ -85,8 +85,9 @@ nothing #hide
 # ([#331](https://github.com/MagneticResonanceImaging/MRIReco.jl/issues/331)).
 #
 # Special readouts, such as noise measurements, are not filtered out and have to be removed before the conversion
-# with [`remove_raw_by_flags`](@ref). The conversion works in the other direction as well:
-# [`RawAcquisitionData(::AcquisitionData)`](@ref) creates raw data, for example from simulated data.
+# with [`remove_raw_by_flags`](@ref), as shown in [Select and Prepare Profiles](@ref prepare-profiles). The conversion
+# works in the other direction as well: [`RawAcquisitionData(::AcquisitionData)`](@ref) creates raw data, for example
+# from simulated data.
 #
 # `AcquisitionData` is defined as
 #
@@ -137,8 +138,9 @@ tr = trajectory(acqData, 1)
 size(kspaceNodes(tr)), extrema(kspaceNodes(tr))
 
 # The knee data was acquired on a Cartesian grid. MRIBase also provides constructors for non-Cartesian trajectories,
-# such as radial and spiral trajectories and, in 3D, kooshball and stack-of-stars trajectories. The following figure
-# compares a Cartesian, a radial and a spiral trajectory:
+# such as radial and spiral trajectories and, in 3D, kooshball trajectories;
+# [Create a Trajectory](@ref create-trajectory) describes them. The following figure compares a Cartesian, a radial
+# and a spiral trajectory:
 
 using CairoMakie
 
@@ -231,7 +233,9 @@ axisvalues(image)[1]
 # | coil sensitivities of [`espirit`](@ref) | x, y, z or slice, coil |
 #
 # A k-space array in the layout of `kDataCart` can also be converted into `AcquisitionData`; if its third dimension
-# holds the slices of a 2D acquisition, the keyword `enc2D = true` is needed. Note that the coil and contrast
+# holds the slices of a 2D acquisition, the keyword `enc2D = true` is needed.
+# [Create AcquisitionData from Arrays](@ref acqdata-from-arrays) shows how to do this and how to create
+# `AcquisitionData` from the nodes and samples of a non-Cartesian acquisition. Note that the coil and contrast
 # dimensions are in a different order in k-space arrays and in images:
 
 size(kDataCart(acqData)), size(image)
